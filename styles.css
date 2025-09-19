@@ -1,0 +1,52 @@
+ul{
+    list-style-type: none;
+    font-size: 16px;
+    padding-left:0;
+    justify-content: left;
+    align-items:left;
+}
+
+li{
+    border:2px solid black;
+    cursor: pointer;
+    width: 97%;
+}
+
+li.active{
+    background-color:lightblue;
+}
+h1 {
+    align-items: center;
+    text-align: center;
+}
+h2{
+    text-align:center;
+    padding-left: 10px;
+    width:100%;
+}
+.container{
+    display:flex;
+    justify-content: center;
+    
+}
+
+.courseList{
+
+    width: 250px;
+    text-align: center;
+    border: 2px solid black;
+    margin: 60px;
+    overflow-y:auto;
+    height: 300px;
+    padding:20px;
+    overflow-x:hidden;
+    padding-left:0;
+    padding-right:0;
+}
+
+.buttonDiv{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+}

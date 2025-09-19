@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Class Selection Page</h1>
+    <div class="container">
+      <div class="courseList">
+        <h2>Available Courses</h2>
+        <ul id="availableCourseList">
+          <li class="courseItem">Mathematics</li>
+          <li class="courseItem">Physics</li>
+        </ul>
+      </div>
+
+      <div class="courseList">
+        <h2>Selected Courses</h2>
+        <ul id="selectedCourseList"></ul>
+      </div>
+    </div>
+    <div id="creditCounter" class="buttonDiv">
+      Total Credit : <span id="creditDisplay">0</span>
+      <button id="select-btn">Select</button>
+    </div>
+    <script src="class.js"></script>
+  </body>
+</html>
