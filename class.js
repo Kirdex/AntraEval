@@ -42,6 +42,16 @@ const View = (() => {
     render(selectedContainer, template);
   };
 
+  const creditChecker = (currentCredit) => {
+    if (currentCredit > 18) {
+      alert("You can only choose up to 18 credit in one semester");
+      return true;
+    } else if (currentCredit === 0) {
+      alert("You currently have 0 credit. Please select a class");
+      return true;
+    }
+    return false;
+  };
   const showConfirmation = (totalCredits) => {
     const confirmMessage = `You have chosen ${totalCredits} total credits. Do you want to move all selected courses to the Selected Courses bucket?`;
     return confirm(confirmMessage);
@@ -59,6 +69,7 @@ const View = (() => {
     updateCreditDisplay,
     showConfirmation,
     renderSelected,
+    creditChecker,
   };
 })();
 
@@ -149,10 +160,12 @@ const Controller = ((view, model) => {
 
   const AddCourse = () => {
     dom.btn.addEventListener("click", () => {
-      if (currentCredit === 0) {
-        alert("Please select at least one course to proceed.");
-      } else if (moreEighteenCredit()) {
-        alert("You can only choose up to 18 credits in one semester");
+      //   if (currentCredit === 0) {
+      //     alert("Please select at least one course to proceed.");
+      //   } else if (moreEighteenCredit()) {
+      //     alert("You can only choose up to 18 credits in one semester");
+      if (view.creditChecker(currentCredit)) {
+        return;
       } else {
         const userConfirmed = view.showConfirmation(currentCredit);
 
@@ -167,17 +180,16 @@ const Controller = ((view, model) => {
       }
     });
   };
-  const moreEighteenCredit = () => {
-    if (currentCredit > 18) {
-      alert("You can only choose up to 18 credits in one semester");
-      return true;
-    }
-    return false;
-  };
+  //   const moreEighteenCredit = () => {
+  //     if (currentCredit > 18) {
+  //       alert("You can only choose up to 18 credits in one semester");
+  //       return true;
+  //     }
+  //     return false;
+  //   };
   const bootstrap = () => {
     init();
     select();
-    moreEighteenCredit();
     AddCourse();
   };
 
