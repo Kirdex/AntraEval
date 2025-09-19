@@ -58,6 +58,7 @@ const View = (() => {
     dom,
     updateCreditDisplay,
     showConfirmation,
+    renderSelected,
   };
 })();
 
@@ -91,7 +92,7 @@ const Controller = ((view, model) => {
   const courseList = new Course();
   const selectedCourse = [];
   const { dom } = view;
-  let currentCredit = 0; // Changed from const to let
+  let currentCredit = 0;
   const init = () => {
     classPromise.then((list) => {
       courseList.newCourse = list;
@@ -150,13 +151,19 @@ const Controller = ((view, model) => {
     dom.btn.addEventListener("click", () => {
       if (currentCredit === 0) {
         alert("Please select at least one course to proceed.");
-      } else if (moreEighteenCredit) {
+      } else if (moreEighteenCredit()) {
         alert("You can only choose up to 18 credits in one semester");
       } else {
         const userConfirmed = view.showConfirmation(currentCredit);
 
         if (userConfirmed) {
+          view.renderSelected(selectedCourse);
+        } else {
+          return;
         }
+        dom.btn.disabled = true;
+        const activeItems = dom.container.querySelectorAll("li.active");
+        activeItems.forEach((item) => item.classList.remove("active"));
       }
     });
   };
@@ -170,7 +177,6 @@ const Controller = ((view, model) => {
   const bootstrap = () => {
     init();
     select();
-    updateCreditDisplay();
     moreEighteenCredit();
     AddCourse();
   };

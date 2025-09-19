@@ -11,6 +11,9 @@ li{
     cursor: pointer;
     width: 97%;
 }
+li:nth-child(odd) {
+    background-color: rgb(221, 239, 221);
+}
 
 li.active{
     background-color:lightblue;
